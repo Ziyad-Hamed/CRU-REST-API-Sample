@@ -1,0 +1,121 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "CRUcustomerss",
+    "version" : "2.0.0",
+    "description" : "CRUcustomers"
+  },
+  "paths" : {
+    "/Customers" : {
+      "post" : {
+        "operationId" : "postGetCustomersDetails",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/outputDetail"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a getCustomersDetails",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/customers"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      },
+      "get" : {
+        "operationId" : "getCustomers",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/AllCustomers"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve Customers",
+        "parameters" : [ {
+          "name" : "NID",
+          "in" : "query",
+          "type" : "integer"
+        } ]
+      },
+      "put" : {
+        "operationId" : "putCustomers",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/outputDetail"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Update Customers",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/customers"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        }, {
+          "name" : "NID",
+          "in" : "query",
+          "type" : "integer",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "basePath" : "/crucustomers/v1",
+  "definitions" : {
+    "customers" : {
+      "type" : "object",
+      "properties" : {
+        "NID" : {
+          "type" : "string"
+        },
+        "FName" : {
+          "type" : "string"
+        },
+        "LName" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "NID" ]
+    },
+    "outputDetail" : {
+      "type" : "object",
+      "properties" : {
+        "ElibilityStatus" : {
+          "type" : "string"
+        },
+        "customerDetail" : {
+          "$ref" : "#/definitions/customers"
+        }
+      }
+    },
+    "AllCustomers" : {
+      "type" : "object",
+      "properties" : {
+        "customers" : {
+          "$ref" : "#/definitions/customers"
+        },
+        "outputDetail" : {
+          "$ref" : "#/definitions/outputDetail"
+        }
+      }
+    }
+  }
+}
